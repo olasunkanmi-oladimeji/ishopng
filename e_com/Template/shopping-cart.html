@@ -1,0 +1,174 @@
+{% extends 'account/base.html' %}
+{% load static%}
+{% block content %}
+<!-- start main content -->
+{% if messages %}
+				{% for message in messages %}
+				<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+				  {{ message }}
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				{% endfor %}
+		  {% endif %}
+<main class="main-container">
+<!-- shopping cart content -->
+<section class="shopping-cart-area">
+	<!-- Begin cart -->
+	<div class="ld-subpage-content">
+
+		<div class="ld-cart">
+
+			<!-- Begin cart section -->
+			<section class="ld-cart-section ptb-50">
+				
+				<div class="container">
+
+					<div class="row">
+
+						<div class="col-md-12">
+
+							<!-- Begin table -->
+							<table class="table cart-table">
+								<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th class="table-title">Product Name</th>
+									<th class="table-title">Unit Price</th>
+									<th class="table-title">Quantity</th>
+									<th class="table-title">SubTotal</th>
+									<th>
+
+										<span class="close-button disabled"></span></th>
+								</tr>
+								</thead>
+
+
+								<tbody>
+								{% for order_item in object.items.all %}
+									<tr>
+										<th scope="row">{{ forloop.counter }}</th>
+										<td class="product-name-col">
+											<figure>
+												<a href="{{order_item.item.get_absolute_url}}"><img class="img-responsive" src="{{order_item.item.image.url}}" alt="White linen sheer dress"></a>
+											</figure>
+											<h2 class="product-name"><a href="{{order_item.item.get_absolute_url}}">{{ order_item.item.title }}</a></h2>
+
+											<ul>
+												<li>Color: White</li>
+												<li>{{order_item.get_discount_percentage}}</li>
+											</ul>
+										</td>
+										<td class="product-price-col">
+											&#8358; {{ order_item.item.price }}
+										</td>
+										<td style="display: flex;">
+											<a href="{% url 'core:remove_item_cart' order_item.item.slug %}"><i class="fa fa-minus mr-2"></i></a>
+											<div class="custom-quantity-input " >
+												<input type="text" name="quantity" value="{{ order_item.quantity }}">
+											</div>
+											<a href="{% url 'core:add_to_cart' order_item.item.slug %}"><i class="fa fa-plus ml-2"></i></a>
+										</td>
+										<td class="product-total-col">
+											{% if order_item.item.discount_price %}
+													&#8358; {{ order_item.get_total_discount_item_price }}
+														<span class="badge badge-primary">Saving &#8358; {{ order_item.get_amount_saved }}</span>
+													{% else %}
+													&#8358; {{ order_item.get_total_item_price }}
+													{% endif %}
+													
+										</td>
+										<td>
+											<a style='color: red;' href="{% url 'core:remove_from_cart' order_item.item.slug %}">
+												<i class="fa fa-trash float-right"></i>
+											</a>
+										</td>
+									</tr>
+								<!-- End tr -->
+								{% empty %}
+									<tr>
+						
+										<td colspan='5'>Your cart is empty</td>
+										
+									</tr>
+									<tr>
+										<td colspan="5">
+										<a class='btn btn-primary float-right' href='/'>Continue shopping</a>
+										</td>
+									</tr>
+								{% endfor %}
+
+							
+								</tbody>
+							</table>
+							<!-- End table -->
+
+							<div class="mt-30"></div>
+
+							<div class="row">
+
+								<div class="col-md-8">
+									<div class="mt-30"></div>
+									
+								</div>
+
+								<div class="mt-30 visible-sm visible-xs clearfix"></div>
+
+								<div class="col-md-4">
+
+									<table class="table total-table">
+
+										<tbody>
+										<tr>
+											<td class="total-table-title">Subtotal:</td>
+											{% if object.get_total %}
+											<td>&#8358; {{ object.get_total }}</td>
+											{% endif %}
+										</tr>
+										
+										{% if object.coupon %}
+										<tr>
+											<td class="total-table-title"><b>Coupon</b></td>
+											<td><b>-NGN {{ object.coupon.amount }}</b></td>
+										</tr>
+										{% endif %}
+										
+										</tbody>
+
+										<tfoot>
+										<tr>
+											<td>Total:</td>
+											<td>&#8358; {{ object.get_total }}</td>
+										</tr>
+										</tfoot>
+									</table>
+									<!-- End table -->
+
+									<div class="mt-30"></div>
+									<a href="/" class="btn btn-custom-6 btn-lger text-right min-width-lg">Continue Shopping</a>
+									<a href="{% url 'core:checkout' %}" class="btn btn-custom-6 btn-lger min-width-sm">Checkout</a>
+									
+
+								</div>
+								<!-- /.col-md-4 -->
+							</div>
+							<!-- /.row -->
+						</div>
+					</div>
+				</div>
+
+			</section>
+			<!-- /.ld-cart-section -->
+
+		</div>
+		<!-- /.ld-cart -->
+	</div>
+	<!-- /.ld-subpage-content -->
+	<!-- End Cart -->
+</section>
+<!-- end shopping cart content -->
+
+</main>
+
+{% endblock %}

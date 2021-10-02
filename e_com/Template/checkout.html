@@ -1,0 +1,251 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block content %}
+<!-- end header -->
+
+<!-- start main content -->
+<main class="main-container">
+<!--Checkout Area Start-->
+<section class="checkout-area area-padding ptb-40">
+	<!-- Begin checkout -->
+	<div class="ld-subpage-content">
+
+		<div class="checkout-content">
+
+			<!-- Begin checkout section -->
+			<section class="checkout">
+
+
+
+				<section class="checkout-section">
+
+					<div class="ld-checkout-inner">
+
+						<div class="xs-margin"></div>
+
+						<div class="accordion" id="collapse">
+
+							<div class="container padding-top-md">
+								<h2 class="accordion-title">
+
+								<span style="margin-top: 2em;"> Billing Informations</h2>
+
+								<div class="" id="">
+
+
+										<form  method="POST">
+											{% csrf_token %}
+											
+											
+											<div class="form-row">
+												<div class="form-group col-md-6">
+												  <label for="inputEmail4">Full name</label>
+												  <input type="text" class="form-control" name='name' id="name" placeholder="full Name">
+												</div>
+												<div class="form-group col-md-6">
+												  <label for="inputPassword4">Email</label>
+												  <input type="email" class="form-control" id="email" name='email' placeholder="youremail@example.com">
+												</div>
+											  </div>
+												
+											  <div class="form-row">
+												<div class="form-group col-md-6">
+												  <label for="inputEmail4">Telphone no</label>
+												  <input type="tel" class="form-control" name="phone_no" id="id_phone_no" placeholder="080********">
+												</div>
+												<div class="form-group col-md-6">
+												  <label for="inputPassword4">Address</label>
+												  <input type="text" class="form-control" name="address" id="address" placeholder="1234 Main St">
+												</div>
+											  </div>
+											
+
+											
+												<div class="">
+													<h2 class="accordion-title">
+
+														<span> Delivery Details
+														</span>
+														</h2>
+
+														<div class="form-group custom-checkbox-wrapper">
+
+															<span class="custom-control custom-checkbox">
+															{% if default_shipping_address %}
+															  <input type="checkbox" class="custom-control-input" name="use_default_shipping" id="use_default_shipping">
+															  
+			
+															<label class="custom-control-label" for="use_default_shipping">Use default shipping address: {{ default_shipping_address.address|truncatechars:10 }}</label>
+															{% endif %}
+															</span>
+
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input" name="set_default_shipping" id="set_default_shipping">
+																<label class="custom-control-label" for="set_default_shipping">Save as default shipping address</label>
+															  </div>
+														</div>
+												</div>
+												
+												<div >
+													<h2 class="accordion-title">
+
+														<span>Payment Method
+														</span>
+													</h2>
+													<div class="d-flex my-3">
+														{% for value, name in form.fields.payment_option.choices %}
+														<div class="custom-control custom-radio m-3">
+														  <input id="{{ name }}" name="payment_option" value="{{ value }}" type="radio" class="custom-control-input" required>
+														  <label class="custom-control-label" for="{{ name }}">{{ name }}</label>
+														</div>
+														{% endfor %}
+														
+													  </div>
+												</div>
+												<div class="xs-margin">
+												</div>
+												<input type="submit" class="btn btn-outline-dark float-right" value="CONFIRM ORDER">
+											
+										</form>
+									
+								</div>
+							</div>
+							<div class="accordion-group panel">
+
+								<div class="container">
+									<h2 class="accordion-title mb-0">
+									<span style="margin-top:2em">Confirm Order </span> </h2>
+
+										<div class="row accordion-body-wrapper">
+											
+											<div class="col-md-12">
+												<table class="table checkout-table">
+													<thead>
+													<tr>
+														<th class="table-title">Product Name
+														</th>
+														<th class="table-title">Product Code
+														</th>
+														<th class="table-title">Unit Price
+														</th>
+														<th class="table-title">Quantity
+														</th>
+														<th class="table-title">SubTotal
+														</th>
+														<th>
+
+                                                                    <span class="close-button disabled">
+                </span>
+														</th>
+													</tr>
+													</thead>
+													<tbody>
+														{% for  order_item in order.items.all %}
+														<tr>
+															<th scope="row">{{ forloop.counter }}</th>
+															<td class="product-name-col">
+																<figure>
+																	<a href="{{order_item.item.get_absolute_url}}"><img class="img-responsive" src="{{order_item.item.image.url}}" alt="White linen sheer dress"></a>
+																</figure>
+																<h2 class="product-name"><a href="{{order_item.item.get_absolute_url}}">{{ order_item.item.title }}</a></h2>
+					
+																<ul>
+																	<li>Color: White</li>
+																	<li>Size: SM</li>
+																</ul>
+															</td>
+															<td class="product-price-col">
+																&#8358; {{ order_item.item.price }}
+															</td>
+															<td style="display: flex;">
+																<a href="{% url 'core:remove_item_cart' order_item.item.slug %}"><i class="fa fa-minus mr-2"></i></a>
+																<div class="custom-quantity-input " >
+																	<input type="text" name="quantity" value="{{ order_item.quantity }}">
+																</div>
+																<a href="{% url 'core:add_to_cart' order_item.item.slug %}"><i class="fa fa-plus ml-2"></i></a>
+															</td>
+															<td class="product-total-col">
+																{% if order_item.item.discount_price %}
+																		&#8358; {{ order_item.get_total_discount_item_price }}
+																			<span class="badge badge-primary">Saving &#8358; {{ order_item.get_amount_saved }}</span>
+																		{% else %}
+																		&#8358; {{ order_item.get_total_item_price }}
+																		{% endif %}
+																		
+															</td>
+															<td>
+																<a style='color: red;' href="{% url 'core:remove_from_cart' order_item.item.slug %}">
+																	<i class="fa fa-trash float-right"></i>
+																</a>
+															</td>
+														</tr>
+													<!-- End tr -->
+													
+													{% endfor %}
+													<tr class="merged">
+														<td class="checkout-table-title" colspan="4">
+														<span>Subtotal:</span>
+														</td>
+														<td class="checkout-table-price" colspan="2">{% if order.get_total %}
+															&#8358; {{ order.get_total }}
+															{% endif %}
+														</td>
+													</tr>
+													<tr class="merged">
+														<td class="checkout-table-title" colspan="4">
+
+                                                                    <span>Shipping:
+                </span>
+														</td>
+														<td class="checkout-table-price" colspan="2">$6.00
+														</td>
+													</tr>
+													
+													</tbody>
+													<tfoot>
+													<tr>
+														<td class="checkout-total-title" colspan="4">
+
+                                                                    <span>TOTAL:
+                </span>
+														</td>
+														<td class="checkout-total-price cart-total" colspan="2">$780.00
+														</td>
+													</tr>
+													</tfoot>
+												</table>
+
+												<div class="md-margin half">
+												</div>
+
+											
+											</div>
+										</div>
+									
+								</div>
+							</div>
+						</div>
+
+					
+
+					</div>
+
+				</section>
+
+
+			</section>
+			<!-- End checkout section -->
+
+
+		</div>
+		<!-- /.checkout-content -->
+	</div>
+	<!-- /.ld-subpage-content -->
+	<!-- End checkout -->
+</section>
+<!--End of Checkout Area-->
+
+
+</main>
+<!-- end main content -->
+{%  endblock %}

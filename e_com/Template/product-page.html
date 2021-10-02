@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% block content%}
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+    <div class="container dark-grey-text mt-5 p-4">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <img src="{{item.image.url}}" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <!--Content-->
+          <div class="p-4">
+
+            <div class="mb-3">
+              <a href="">
+                <span class="badge purple mr-1">{{item.category}}</span>
+              </a>
+              <a href="">
+                <span class="badge blue mr-1">{{item.subcategory}}</span>
+              </a>
+              <a href="">
+               {% if item.label_text %}
+                <span class="badge {{item.get_label_display}}-color mr-1">{{item.label_text}}</span>
+                {% endif %}
+              </a>
+            </div>
+
+            <p class="lead">
+              {% if item.discount_price %}
+              <span class="mr-1">
+                <del>NGN {{item.price|floatformat:2}}</del>
+              </span>
+              <span>NGN {{item.discount_price|floatformat:2}}</span>
+
+              {% else %}
+              
+              <span>NGN {{item.price|floatformat:2}}</span>
+                
+              {% endif %}
+            </p>
+
+            <p class="lead font-weight-bold">Description</p>
+
+            <p>{{item.description|linebreaks|safe}}</p>
+
+              <!-- Default input -->
+             
+              
+              <a href="{{item.get_add_to_cart_url}}" class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
+                <i class="fas fa-cart-plus ml-1"></i>
+              </a>
+
+              <a href="{{item.get_remove_to_cart_url}}" class="btn btn-danger btn-md my-0 p" type="submit">Remove from cart
+                <i class="fa fa-cart-arrow-down ml-1"></i>
+              </a>
+
+
+
+          </div>
+          <!--Content-->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+      <hr>
+
+      <!--Grid row-->
+      <div class="row d-flex justify-content-center wow fadeIn">
+
+
+      </div>
+      <!--Grid row-->
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+          {% for item in page_obj %}
+          <div class="col-lg-3 col-md-6 mb-4 rounded-pill">
+
+            <!--Card-->
+            
+            <div class="card" >
+
+              <!--Card image-->
+              <div class="view overlay zoom">
+                <img src="{{item.image.url}}" height="230em" class="card-img-top"
+                  alt="">
+                <a href="{{item.get_absolute_url}}">
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+              <!--Card image-->
+
+              <!--Card content-->
+              <div class="card-body text-center">
+                <!--Category & Title-->
+                <a href="{{item.get_absolute_url}}" class="grey-text">
+                  <h5>{{item.category}}</h5>
+                </a>
+                <h5>
+                  <strong>
+                    <a href="{{item.get_absolute_url}}" class="dark-grey-text">{{item.title}}
+                      {% if item.label_text %}
+                      <span class="badge badge-pill {{item.get_label_display}}-color">{{item.label_text}}</span>
+                      {% endif %}
+                    </a>
+                  </strong>
+                </h5>
+
+                <h4 class="font-bold blue-text">
+                    {% if item.discount_price %}
+                    <strong>&#8358; {{item.discount_price|floatformat:2}}</strong>
+                    {% else %}
+                    <strong>&#8358; {{item.price|floatformat:2}}</strong>
+                    {% endif %}
+                </h4>
+
+              </div>
+              <!--Card content-->
+
+            </div>
+            <!--Card-->
+
+          </div>
+          {% endfor %}
+          <!--Grid column-->
+  
+
+      </div>
+      <!--Grid row-->
+
+    </div>
+  </main>
+  <!--Main layout-->
+
+{% endblock %}

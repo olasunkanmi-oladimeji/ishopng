@@ -1,0 +1,319 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block content %}
+
+
+
+
+
+<!-- start main content -->
+<main class="main-container">
+
+	<!-- new collection directory -->
+	<section id="content-block" class="slider_area">
+		<div class="container">
+			<div class="content-push">
+				<div class="row">
+
+					<div class="col-md-11 col-md-pull-0">
+
+						<div class="header_slider">
+							<article class="boss_slider">
+								<div class="tp-banner-container">
+									<div class="tp-banner tp-banner0">
+										<ul>
+											<!-- SLIDE  -->
+											{% for banner in banners %}
+  												{% if forloop.counter == 1 %}
+												<li data-link="#" data-target="_self" data-transition="flyin" data-slotamount="7" data-masterspeed="500" data-saveperformance="on">
+												<!-- MAIN IMAGE --><img height="500px" width="894px" src="/media/{{banner.img}}" alt="slidebg1" data-lazyload="/media/{{banner.img}}" data-bgposition="left center" data-kenburns="off" data-duration="14000" data-ease="Linear.easeNone" data-bgpositionend="right center" />
+												<!-- LAYER NR. 1 -->
+												<div class="tp-caption very_big_white randomrotate customout rs-parallaxlevel-0" data-x="270" data-y="140" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="300" data-start="500" data-end="4800" data-endspeed="300" data-easing="easeInOutBack" data-endeasing="easeOutBack" data-elementdelay="0.1" data-endelementdelay="0.1" style="z-index: 2;"> Trendy </div>
+												<!-- LAYER NR. 2 -->
+												<div class="tp-caption very_large_white_text randomrotate customout rs-parallaxlevel-0" data-x="270" data-y="250" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="300" data-start="800" data-end="4800" data-endspeed="300" data-easing="easeInOutBack" data-endeasing="easeOutBack" data-elementdelay="0.1" data-endelementdelay="0.1" style="z-index: 2;"> selection </div>
+												<!-- LAYER NR. 3 -->
+												<div class="tp-caption large_white_text randomrotate customout rs-parallaxlevel-0" data-x="355" data-y="363" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="300" data-start="1200" data-end="4800" data-endspeed="300" data-easing="easeInOutBack" data-endeasing="easeOutBack" data-elementdelay="0.1" data-endelementdelay="0.1" style="z-index: 2;"> SHOP NOW </div>
+
+												</li>
+											{%else%}
+											<li data-link="#" data-target="_self" data-transition="flyin" data-slotamount="7" data-masterspeed="500" data-saveperformance="on">
+												<!-- MAIN IMAGE --><img src="/media/{{banner.img}}" alt="slidebg1" data-lazyload="/media/{{banner.img}}" data-bgposition="left center" data-kenburns="off" data-duration="14000" data-ease="Linear.easeNone" data-bgpositionend="right center" />
+												<!-- LAYER NR. 1 -->
+												<div class="tp-caption very_big_white randomrotate customout rs-parallaxlevel-0" data-x="270" data-y="140" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="300" data-start="500" data-end="4800" data-endspeed="300" data-easing="easeInOutBack" data-endeasing="easeOutBack" data-elementdelay="0.1" data-endelementdelay="0.1" style="z-index: 2;"> Trendy </div>
+												<!-- LAYER NR. 2 -->
+												<div class="tp-caption very_large_white_text randomrotate customout rs-parallaxlevel-0" data-x="270" data-y="250" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="300" data-start="800" data-end="4800" data-endspeed="300" data-easing="easeInOutBack" data-endeasing="easeOutBack" data-elementdelay="0.1" data-endelementdelay="0.1" style="z-index: 2;"> selection </div>
+												<!-- LAYER NR. 3 -->
+												<div class="tp-caption large_white_text randomrotate customout rs-parallaxlevel-0" data-x="355" data-y="363" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="300" data-start="1200" data-end="4800" data-endspeed="300" data-easing="easeInOutBack" data-endeasing="easeOutBack" data-elementdelay="0.1" data-endelementdelay="0.1" style="z-index: 2;"> SHOP NOW </div>
+
+											</li>
+											{% endif %}
+      										{% endfor %}
+										</ul>
+										{% for banner in banners %}
+										      {% if forloop.counter == 1 %}
+										<div class="slideshow_control"></div>
+										{% endif %}
+    									{% endfor %}
+									</div><!-- /.tp-banner -->
+								</div>
+							</article>
+						</div><!-- /.header_slider -->
+
+						<div class="clear"></div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end new collection directory -->
+
+
+
+<section id="popular-product" class="ecommerce">
+	<div class="container">
+		<!-- Shopping items content -->
+		<div class="shopping-content">
+
+			<!-- Block heading two -->
+			<div class="block-heading-two">
+				<h3><span>Latest Items</span></h3>
+			</div>
+
+			<div class="row">
+				
+				{% for item in page_obj %}
+				<div class="col-md-3 col-sm-6">
+					<!-- Shopping items -->
+					<div class="shopping-item">
+						<!-- Image -->
+						<a href="{{item.get_absolute_url}}"><img class="img-responsive" src="{{item.image.url}}" alt="" height="400px" width="450px" /></a>
+						<!-- Shopping item name / Heading -->
+						<h4><a href="{{item.get_absolute_url}}">{{item.title}}</a><span class="color pull-right">
+							{% if item.discount_price %}
+							&#8358; {{item.discount_price|floatformat:2}}
+							{% else %}
+                    &#8358; {{item.price|floatformat:2}}
+                    {% endif %}
+						</span></h4>
+						<div class="clearfix"></div>
+					
+						<!-- Shopping item hover block & link -->
+						<div class="item-hover bg-color hidden-xs">
+							<a href="{{item.get_add_to_cart_url}}">Add to cart</a>
+						</div>
+						<!-- Hot tag -->
+						{% if item.label_text %}
+						<span class="hot-tag bg-{{item.get_label_display}}">{{item.label_text}}</span>
+						{% endif %}
+					</div>
+				</div>
+				{% endfor %}
+	
+			</div>
+			<!-- Pagination -->
+		
+			<nav class="shopping-pagination pull-right">
+				{% if page_obj %}
+				<ul class="pagination">
+		
+				  <!--Arrow left-->
+				  {% if page_obj.has_previous %}
+				  <li class="page-item">
+					<a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+					  <span aria-hidden="true">&laquo;</span>
+					  <span class="sr-only">Previous</span>
+					</a>
+				  </li>
+				  {% endif%}
+				  {% for i in page_obj.paginator.page_range %}
+					{% if page_obj.number == i %}
+				  <li class="page-item active">
+					<a class="page-link" href="#">{{ i }}
+					  <span class="sr-only">(current)</span>
+					</a>
+				  </li>
+				  {% else %}
+				  <li class="page-item">
+					<a class="page-link" href="?page={{ i }}">{{ i }}</a>
+				  </li>
+					{% endif %}
+				{% endfor %}
+		
+				  {% if page_obj.has_next %}
+				  <li class="page-item">
+					<a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+					  <span aria-hidden="true">&raquo;</span>
+					  <span class="sr-only">Next</span>
+					</a>
+				  </li>
+		
+				{% endif %}
+				</ul>
+				{% endif %}
+			  </nav>
+			  <!--Pagination-->
+			<!-- Pagination end-->
+		</div>
+	</div>
+</section>
+
+
+	<!-- Start Our Shop Items -->
+
+	<!-- Recent items Starts -->
+	<section id="recent-product">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<section class="shopping-content">
+
+
+
+						<!-- Block heading two -->
+						<div class="block-heading-two">
+							<h3><span>Categories</span></h3>
+						</div>
+
+						<div class="related-products-wrapper">
+
+							<div class="related-products-carousel">
+
+								<div class="product-control-nav">
+									<a class="prev"><i class="fa fa-angle-left"></i></a>
+									<a class="next"><i class="fa fa-angle-right"></i></a>
+								</div>
+
+
+								<div class="row product-listing">
+									<div id="product-carousel" class="product-listing">
+			
+										{% for categories in categories %}
+										<div class="product  item first ">
+											<figure>
+												<a href="{{categories.get_absolute_url}}">
+													<img src="{{categories.image.url}}" class="img-responsive" alt="T_2_front">
+												</a>
+											</figure>	
+											<h4 class="title"><a href="{{categories.get_absolute_url}}">{{categories.name}}</a></h4>
+											
+
+										</div>
+
+										{% endfor %}
+
+										
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+
+					</section>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Recent items Ends -->
+
+	
+<section id="popular-product" class="ecommerce">
+	<div class="container">
+		<!-- Shopping items content -->
+		<div class="shopping-content">
+
+			<!-- Block heading two -->
+			<div class="block-heading-two">
+				<h3><span>Shop</span></h3>
+			</div>
+
+			<div class="row">
+				
+				{% for item in shop_obj %}
+				<div class="col-md-3 col-sm-6">
+					<!-- Shopping items -->
+					<div class="shopping-item">
+						<!-- Image -->
+						<a href="{{item.get_absolute_url}}"><img class="img-responsive" src="{{item.image.url}}" alt="" height="400px" width="450px" /></a>
+						<!-- Shopping item name / Heading -->
+						<h4><a href="{{item.get_absolute_url}}">{{item.title}}</a><span class="color pull-right">
+							{% if item.discount_price %}
+							&#8358; {{item.discount_price|floatformat:2}}
+							{% else %}
+                    &#8358; {{item.price|floatformat:2}}
+                    {% endif %}
+						</span></h4>
+						<div class="clearfix"></div>
+					
+						<!-- Shopping item hover block & link -->
+						<div class="item-hover bg-color hidden-xs">
+							<a href="{{item.get_add_to_cart_url}}">Add to cart</a>
+						</div>
+						<!-- Hot tag -->
+						{% if item.label_text %}
+						<span class="hot-tag bg-{{item.get_label_display}}">{{item.label_text}}</span>
+						{% endif %}
+					</div>
+				</div>
+				{% endfor %}
+	
+			</div>
+			<!-- Pagination -->
+		
+			<nav class="shopping-pagination pull-right">
+				{% if shop_obj %}
+				<ul class="pagination">
+		
+				  <!--Arrow left-->
+				  {% if shop_obj.has_previous %}
+				  <li class="page-item">
+					<a class="page-link" href="?page={{ shop_obj.previous_page_number }}" aria-label="Previous">
+					  <span aria-hidden="true">&laquo;</span>
+					  <span class="sr-only">Previous</span>
+					</a>
+				  </li>
+				  {% endif%}
+				  {% for i in shop_obj.paginator.page_range %}
+					{% if shop_obj.number == i %}
+				  <li class="page-item active">
+					<a class="page-link" href="#">{{ i }}
+					  <span class="sr-only">(current)</span>
+					</a>
+				  </li>
+				  {% else %}
+				  <li class="page-item">
+					<a class="page-link" href="?page={{ i }}">{{ i }}</a>
+				  </li>
+					{% endif %}
+				{% endfor %}
+		
+				  {% if shop_obj.has_next %}
+				  <li class="page-item">
+					<a class="page-link" href="?page={{ shop_obj.next_page_number }}" aria-label="Next">
+					  <span aria-hidden="true">&raquo;</span>
+					  <span class="sr-only">Next</span>
+					</a>
+				  </li>
+		
+				{% endif %}
+				</ul>
+				{% endif %}
+			  </nav>
+			  <!--Pagination-->
+			<!-- Pagination end-->
+		</div>
+	</div>
+</section>
+
+
+	<!-- End Our Clients  -->
+
+</main>
+<!-- end main content -->
+
+
+
+{% endblock %}
